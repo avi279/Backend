@@ -1,0 +1,1686 @@
+{
+  "version": 2,
+  "tables": [
+    {
+      "table": {
+        "schema": "ingredient",
+        "name": "ingredient"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createIngredient",
+          "select_aggregate": "ingredientsAggregate",
+          "select_by_pk": "ingredient",
+          "select": "ingredients",
+          "delete": "deleteIngredient",
+          "update": "updateIngredient"
+        },
+        "custom_column_names": {}
+      },
+      "array_relationships": [
+        {
+          "name": "ingredientProcessings",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "ingredientId",
+              "table": {
+                "schema": "ingredient",
+                "name": "ingredientProcessing"
+              }
+            }
+          }
+        },
+        {
+          "name": "ingredientSachets",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "ingredientId",
+              "table": {
+                "schema": "ingredient",
+                "name": "ingredientSachet"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "ingredient",
+        "name": "ingredientProcessing"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createIngredientProcessing",
+          "select_aggregate": "ingredientProcessingsAggregate",
+          "select_by_pk": "ingredientProcessing",
+          "select": "ingredientProcessings",
+          "delete": "deleteIngredientProcessing",
+          "update": "updateIngredientProcessing"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "ingredient",
+          "using": {
+            "foreign_key_constraint_on": "ingredientId"
+          }
+        },
+        {
+          "name": "processing",
+          "using": {
+            "foreign_key_constraint_on": "processingName"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "ingredientSachets",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "ingredientProcessingId",
+              "table": {
+                "schema": "ingredient",
+                "name": "ingredientSachet"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "ingredient",
+        "name": "ingredientSachet"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createIngredientSachet",
+          "select_aggregate": "ingredientSachetsAggregate",
+          "select_by_pk": "ingredientSachet",
+          "select": "ingredientSachets",
+          "delete": "deleteIngredientSachet",
+          "update": "updateIngredientSachet"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "ingredient",
+          "using": {
+            "foreign_key_constraint_on": "ingredientId"
+          }
+        },
+        {
+          "name": "ingredientProcessing",
+          "using": {
+            "foreign_key_constraint_on": "ingredientProcessingId"
+          }
+        },
+        {
+          "name": "unitId",
+          "using": {
+            "foreign_key_constraint_on": "unit"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "plannedModes",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "ingredientSachetId",
+              "table": {
+                "schema": "ingredient",
+                "name": "plannedMode"
+              }
+            }
+          }
+        },
+        {
+          "name": "realTimeModes",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "ingredientSachetId",
+              "table": {
+                "schema": "ingredient",
+                "name": "realTimeMode"
+              }
+            }
+          }
+        },
+        {
+          "name": "recipeYields",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "ingredientSachetId",
+              "table": {
+                "schema": "simpleRecipe",
+                "name": "recipeYield_ingredientSachet"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "ingredient",
+        "name": "plannedMode"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createPlannedMode",
+          "select_aggregate": "plannedModesAggregate",
+          "select_by_pk": "plannedMode",
+          "select": "plannedModes",
+          "delete": "deletePlannedMode",
+          "update": "updatePlannedMode"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "ingredientSachet",
+          "using": {
+            "foreign_key_constraint_on": "ingredientSachetId"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "ingredient",
+        "name": "realTimeMode"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createRealTimeModes",
+          "select_aggregate": "realTimeModesAggregate",
+          "select_by_pk": "realTimeMode",
+          "select": "realTimeModes",
+          "delete": "deleteRealTimeModes",
+          "update": "updateRealTimeModes"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "bulkItem",
+          "using": {
+            "foreign_key_constraint_on": "bulkItemId"
+          }
+        },
+        {
+          "name": "ingredientSachet",
+          "using": {
+            "foreign_key_constraint_on": "ingredientSachetId"
+          }
+        },
+        {
+          "name": "packaging",
+          "using": {
+            "foreign_key_constraint_on": "packagingId"
+          }
+        },
+        {
+          "name": "station",
+          "using": {
+            "foreign_key_constraint_on": "stationId"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "inventory",
+        "name": "bulkItem"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createBulkItem",
+          "select_aggregate": "bulkItemsAggregate",
+          "select_by_pk": "bulkItem",
+          "select": "bulkItems",
+          "delete": "deleteBulkItem",
+          "update": "updateBulkItem"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "processing",
+          "using": {
+            "foreign_key_constraint_on": "processingName"
+          }
+        },
+        {
+          "name": "supplierItem",
+          "using": {
+            "foreign_key_constraint_on": "supplierItemId"
+          }
+        },
+        {
+          "name": "unitId",
+          "using": {
+            "foreign_key_constraint_on": "unit"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "bulkItemHistories",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "bulkItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "bulkItemHistory"
+              }
+            }
+          }
+        },
+        {
+          "name": "purchaseOrderItems",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "bulkItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "purchaseOrderItem"
+              }
+            }
+          }
+        },
+        {
+          "name": "realTimeModes",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "bulkItemId",
+              "table": {
+                "schema": "ingredient",
+                "name": "realTimeMode"
+              }
+            }
+          }
+        },
+        {
+          "name": "sacheItems",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "bulkItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "sachetItem"
+              }
+            }
+          }
+        },
+        {
+          "name": "sachetWorkOrders",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "inputBulkItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "sachetWorkOrder"
+              }
+            }
+          }
+        },
+        {
+          "name": "unitConversions",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "bulkItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "unitConversionByBulkItem"
+              }
+            }
+          }
+        },
+        {
+          "name": "workOrdersAsInput",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "inputBulkItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "bulkWorkOrder"
+              }
+            }
+          }
+        },
+        {
+          "name": "workOrdersAsOutput",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "outputBulkItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "bulkWorkOrder"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "inventory",
+        "name": "bulkItemHistory"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createBulkItemHistory",
+          "select_aggregate": "bulkItemHistoriesAggregate",
+          "select_by_pk": "bulkItemHistory",
+          "select": "bulkItemHistories",
+          "delete": "deleteBulkItemHistory",
+          "update": "updateBulkItemHistory"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "bulkItem",
+          "using": {
+            "foreign_key_constraint_on": "bulkItemId"
+          }
+        },
+        {
+          "name": "bulkWorkOrder",
+          "using": {
+            "foreign_key_constraint_on": "workOrderId"
+          }
+        },
+        {
+          "name": "purchaseOrderItem",
+          "using": {
+            "foreign_key_constraint_on": "purchaseOrderItemId"
+          }
+        },
+        {
+          "name": "unitId",
+          "using": {
+            "foreign_key_constraint_on": "unit"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "inventory",
+        "name": "bulkWorkOrder"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createBulkWorkOrder",
+          "select_aggregate": "bulkWorkOrdersAggregate",
+          "select_by_pk": "bulkWorkOrder",
+          "select": "bulkWorkOrders",
+          "delete": "deleteBulkWorkOrder",
+          "update": "updateBulkWorkOrder"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "inputBulkItem",
+          "using": {
+            "foreign_key_constraint_on": "inputBulkItemId"
+          }
+        },
+        {
+          "name": "inputQuantityUnitId",
+          "using": {
+            "foreign_key_constraint_on": "inputQuantityUnit"
+          }
+        },
+        {
+          "name": "outputBulkItem",
+          "using": {
+            "foreign_key_constraint_on": "outputBulkItemId"
+          }
+        },
+        {
+          "name": "station",
+          "using": {
+            "foreign_key_constraint_on": "stationId"
+          }
+        },
+        {
+          "name": "user",
+          "using": {
+            "foreign_key_constraint_on": "userId"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "bulkItemHistories",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "workOrderId",
+              "table": {
+                "schema": "inventory",
+                "name": "bulkItemHistory"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "inventory",
+        "name": "purchaseOrderItem"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createPurchaseOrderItem",
+          "select_aggregate": "purchaseOrderItemsAggregate",
+          "select_by_pk": "purchaseOrderItem",
+          "select": "purchaseOrderItems",
+          "delete": "deletePurchaseOrderItem",
+          "update": "updatePurchaseOrderItem"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "bulkItem",
+          "using": {
+            "foreign_key_constraint_on": "bulkItemId"
+          }
+        },
+        {
+          "name": "supplier",
+          "using": {
+            "foreign_key_constraint_on": "supplierId"
+          }
+        },
+        {
+          "name": "supplierItem",
+          "using": {
+            "foreign_key_constraint_on": "supplierItemId"
+          }
+        },
+        {
+          "name": "unitId",
+          "using": {
+            "foreign_key_constraint_on": "unit"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "bulkItemHistories",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "purchaseOrderItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "bulkItemHistory"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "inventory",
+        "name": "sachetItem"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createSachetItem",
+          "select_aggregate": "sachetItemsAggregate",
+          "select_by_pk": "sachetItem",
+          "select": "sachetItems",
+          "delete": "deleteSachetItem",
+          "update": "updateSachetItem"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "bulkItem",
+          "using": {
+            "foreign_key_constraint_on": "bulkItemId"
+          }
+        },
+        {
+          "name": "unitId",
+          "using": {
+            "foreign_key_constraint_on": "unit"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "plannedModes",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "sachetItemId",
+              "table": {
+                "schema": "ingredient",
+                "name": "plannedMode"
+              }
+            }
+          }
+        },
+        {
+          "name": "sachetItemHistories",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "sachetItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "sachetItemHistory"
+              }
+            }
+          }
+        },
+        {
+          "name": "sachetWorkOrders",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "outputSachetItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "sachetWorkOrder"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "inventory",
+        "name": "sachetItemHistory"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createSachetItemHistory",
+          "select_aggregate": "sachetItemHistoriesAggregate",
+          "select_by_pk": "sachetItemHistory",
+          "select": "sachetItemHistories",
+          "delete": "deleteSachetItemHistory",
+          "update": "updateSachetItemHistory"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "sachetItem",
+          "using": {
+            "foreign_key_constraint_on": "sachetItemId"
+          }
+        },
+        {
+          "name": "sachetWorkOrder",
+          "using": {
+            "foreign_key_constraint_on": "sachetWorkItemId"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "inventory",
+        "name": "sachetWorkOrder"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createSachetWorkOrder",
+          "select_aggregate": "sachetWorkOrdersAggregate",
+          "select_by_pk": "sachetWorkOrder",
+          "select": "sachetWorkOrders",
+          "delete": "deleteSachetWorkOrder",
+          "update": "updateSachetWorkOrder"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "bulkItem",
+          "using": {
+            "foreign_key_constraint_on": "inputBulkItemId"
+          }
+        },
+        {
+          "name": "packaging",
+          "using": {
+            "foreign_key_constraint_on": "packagingId"
+          }
+        },
+        {
+          "name": "sachetItem",
+          "using": {
+            "foreign_key_constraint_on": "outputSachetItemId"
+          }
+        },
+        {
+          "name": "station",
+          "using": {
+            "foreign_key_constraint_on": "stationId"
+          }
+        },
+        {
+          "name": "user",
+          "using": {
+            "foreign_key_constraint_on": "userId"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "sachetItemHistories",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "sachetWorkItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "sachetItemHistory"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "inventory",
+        "name": "supplier"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createSupplier",
+          "select_aggregate": "suppliersAggregate",
+          "select_by_pk": "supplier",
+          "select": "suppliers",
+          "delete": "deleteSupplier",
+          "update": "updateSupplier"
+        },
+        "custom_column_names": {}
+      },
+      "array_relationships": [
+        {
+          "name": "purchaseOrderItems",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "supplierId",
+              "table": {
+                "schema": "inventory",
+                "name": "purchaseOrderItem"
+              }
+            }
+          }
+        },
+        {
+          "name": "supplierItems",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "supplierId",
+              "table": {
+                "schema": "inventory",
+                "name": "supplierItem"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "inventory",
+        "name": "supplierItem"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createSupplierItem",
+          "select_aggregate": "supplierItemsAggregate",
+          "select_by_pk": "supplierItem",
+          "select": "supplierItems",
+          "delete": "deleteSupplierItem",
+          "update": "updateSupplierItem"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "supplier",
+          "using": {
+            "foreign_key_constraint_on": "supplierId"
+          }
+        },
+        {
+          "name": "unitId",
+          "using": {
+            "foreign_key_constraint_on": "unit"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "bulkItems",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "supplierItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "bulkItem"
+              }
+            }
+          }
+        },
+        {
+          "name": "purchaseOrderItems",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "supplierItemId",
+              "table": {
+                "schema": "inventory",
+                "name": "purchaseOrderItem"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "inventory",
+        "name": "unitConversionByBulkItem"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createUnitConversionByBulkItem",
+          "select_aggregate": "unitConversionByBulkItemsAggregate",
+          "select_by_pk": "unitConversionByBulkItem",
+          "select": "unitConversionByBulkItems",
+          "delete": "deleteUnitConversionByBulkItem",
+          "update": "updateUnitConversionByBulkItem"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "bulkItem",
+          "using": {
+            "foreign_key_constraint_on": "bulkItemId"
+          }
+        },
+        {
+          "name": "unitConversion",
+          "using": {
+            "foreign_key_constraint_on": "unitConversionId"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "master",
+        "name": "allergenName"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createMasterAllergen",
+          "select_aggregate": "masterAllergensAggregate",
+          "select_by_pk": "masterAllergen",
+          "select": "masterAllergens",
+          "delete": "deleteMasterAllergen",
+          "update": "updateMasterAllergen"
+        },
+        "custom_column_names": {}
+      }
+    },
+    {
+      "table": {
+        "schema": "master",
+        "name": "cuisineName"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createCuisineName",
+          "select_aggregate": "cuisineNamesAggregate",
+          "select_by_pk": "cuisineName",
+          "select": "cuisineNames",
+          "delete": "deleteCuisineName",
+          "update": "updateCuisineName"
+        },
+        "custom_column_names": {}
+      }
+    },
+    {
+      "table": {
+        "schema": "master",
+        "name": "processingName"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createMasterProcessing",
+          "select_aggregate": "masterProcessingsAggregate",
+          "select_by_pk": "masterProcessing",
+          "select": "masterProcessings",
+          "delete": "deleteMasterProcessing",
+          "update": "updateMasterProcessing"
+        },
+        "custom_column_names": {}
+      },
+      "array_relationships": [
+        {
+          "name": "bulkItems",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "processingName",
+              "table": {
+                "schema": "inventory",
+                "name": "bulkItem"
+              }
+            }
+          }
+        },
+        {
+          "name": "ingredientProcessings",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "processingName",
+              "table": {
+                "schema": "ingredient",
+                "name": "ingredientProcessing"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "onlineStore",
+        "name": "category"
+      }
+    },
+    {
+      "table": {
+        "schema": "onlineStore",
+        "name": "comboProduct"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createComboProduct",
+          "select_aggregate": "comboProductsAggregate",
+          "select_by_pk": "comboProduct",
+          "select": "comboProducts",
+          "delete": "deleteComboProduct",
+          "update": "updateComboProduct"
+        },
+        "custom_column_names": {}
+      },
+      "array_relationships": [
+        {
+          "name": "comboProductComponents",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "comboProductId",
+              "table": {
+                "schema": "onlineStore",
+                "name": "comboProductComponent"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "onlineStore",
+        "name": "comboProductComponent"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createComboProductComponent",
+          "select_aggregate": "comboProductComponentsAggregate",
+          "select_by_pk": "comboProductComponent",
+          "select": "comboProductComponents",
+          "delete": "deleteComboProductComponent",
+          "update": "updateComboProductComponent"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "comboProduct",
+          "using": {
+            "foreign_key_constraint_on": "comboProductId"
+          }
+        },
+        {
+          "name": "customizableProduct",
+          "using": {
+            "foreign_key_constraint_on": "customizableProductId"
+          }
+        },
+        {
+          "name": "inventoryProduct",
+          "using": {
+            "foreign_key_constraint_on": "inventoryProductId"
+          }
+        },
+        {
+          "name": "simpleRecipeProduct",
+          "using": {
+            "foreign_key_constraint_on": "simpleRecipeProductId"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "onlineStore",
+        "name": "customizableProduct"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createCustomizableProduct",
+          "select_aggregate": "customizableProductsAggregate",
+          "select_by_pk": "customizableProduct",
+          "select": "customizableProducts",
+          "delete": "deleteCustomizableProduct",
+          "update": "updateCustomizableProduct"
+        },
+        "custom_column_names": {}
+      },
+      "array_relationships": [
+        {
+          "name": "comboProductComponents",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "customizableProductId",
+              "table": {
+                "schema": "onlineStore",
+                "name": "comboProductComponent"
+              }
+            }
+          }
+        },
+        {
+          "name": "customizableProductOptions",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "customizableProductId",
+              "table": {
+                "schema": "onlineStore",
+                "name": "customizableProductOption"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "onlineStore",
+        "name": "customizableProductOption"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createCustomizableProductOption",
+          "select_aggregate": "customizableProductOptionsAggregate",
+          "select_by_pk": "customizableProductOption",
+          "select": "customizableProductOptions",
+          "delete": "deleteCustomizableProductOption",
+          "update": "updateCustomizableProductOption"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "customizableProduct",
+          "using": {
+            "foreign_key_constraint_on": "customizableProductId"
+          }
+        },
+        {
+          "name": "inventoryProduct",
+          "using": {
+            "foreign_key_constraint_on": "inventoryProductId"
+          }
+        },
+        {
+          "name": "simpleRecipeProduct",
+          "using": {
+            "foreign_key_constraint_on": "simpleRecipeProductId"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "onlineStore",
+        "name": "inventoryProduct"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createInventoryProduct",
+          "select_aggregate": "inventoryProductsAggregate",
+          "select_by_pk": "inventoryProduct",
+          "select": "inventoryProducts",
+          "delete": "deleteInventoryProduct",
+          "update": "updateInventoryProduct"
+        },
+        "custom_column_names": {}
+      },
+      "array_relationships": [
+        {
+          "name": "comboProductComponents",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "inventoryProductId",
+              "table": {
+                "schema": "onlineStore",
+                "name": "comboProductComponent"
+              }
+            }
+          }
+        },
+        {
+          "name": "customizableProductOptions",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "inventoryProductId",
+              "table": {
+                "schema": "onlineStore",
+                "name": "customizableProductOption"
+              }
+            }
+          }
+        },
+        {
+          "name": "inventoryProductOptions",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "inventoryProductId",
+              "table": {
+                "schema": "onlineStore",
+                "name": "inventoryProductOption"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "onlineStore",
+        "name": "inventoryProductOption"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createInventoryProductOption",
+          "select_aggregate": "inventoryProductOptionsAggregate",
+          "select_by_pk": "inventoryProductOption",
+          "select": "inventoryProductOptions",
+          "delete": "deleteInventoryProductOption",
+          "update": "updateInventoryProductOption"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "inventoryProduct",
+          "using": {
+            "foreign_key_constraint_on": "inventoryProductId"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "onlineStore",
+        "name": "menuCollection"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createMenuCollection",
+          "select_aggregate": "menuCollectionsAggregate",
+          "select_by_pk": "menuCollection",
+          "select": "menuCollections",
+          "delete": "deleteMenuCollection",
+          "update": "updateMenuCollection"
+        },
+        "custom_column_names": {}
+      }
+    },
+    {
+      "table": {
+        "schema": "onlineStore",
+        "name": "simpleRecipeProduct"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createSimpleRecipeProduct",
+          "select_aggregate": "simpleRecipeProductsAggregate",
+          "select_by_pk": "simpleRecipeProduct",
+          "select": "simpleRecipeProducts",
+          "delete": "deleteSimpleRecipeProduct",
+          "update": "updateSimpleRecipeProduct"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "simpleRecipe",
+          "using": {
+            "foreign_key_constraint_on": "simpleRecipeId"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "comboProductComponents",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "simpleRecipeProductId",
+              "table": {
+                "schema": "onlineStore",
+                "name": "comboProductComponent"
+              }
+            }
+          }
+        },
+        {
+          "name": "customizableProductOptions",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "simpleRecipeProductId",
+              "table": {
+                "schema": "onlineStore",
+                "name": "customizableProductOption"
+              }
+            }
+          }
+        },
+        {
+          "name": "simpleRecipeProductVariants",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "simpleRecipeProductId",
+              "table": {
+                "schema": "onlineStore",
+                "name": "simpleRecipeProductOption"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "onlineStore",
+        "name": "simpleRecipeProductOption"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createSimpleRecipeProductOption",
+          "select_aggregate": "simpleRecipeProductOptionsAggregate",
+          "select_by_pk": "simpleRecipeProductOption",
+          "select": "simpleRecipeProductOptions",
+          "delete": "deleteSimpleRecipeProductOption",
+          "update": "updateSimpleRecipeProductOption"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "simpleRecipeProduct",
+          "using": {
+            "foreign_key_constraint_on": "simpleRecipeProductId"
+          }
+        },
+        {
+          "name": "simpleRecipeYield",
+          "using": {
+            "foreign_key_constraint_on": "recipeYieldId"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "packaging",
+        "name": "packaging"
+      },
+      "array_relationships": [
+        {
+          "name": "realTimeModes",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "packagingId",
+              "table": {
+                "schema": "ingredient",
+                "name": "realTimeMode"
+              }
+            }
+          }
+        },
+        {
+          "name": "sachetWorkOrders",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "packagingId",
+              "table": {
+                "schema": "inventory",
+                "name": "sachetWorkOrder"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "sample"
+      }
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "sample2"
+      }
+    },
+    {
+      "table": {
+        "schema": "settings",
+        "name": "station"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createStation",
+          "select_aggregate": "stationsAggregate",
+          "select_by_pk": "station",
+          "select": "stations",
+          "delete": "deleteStation",
+          "update": "updateStation"
+        },
+        "custom_column_names": {}
+      },
+      "array_relationships": [
+        {
+          "name": "bulkWorkOrders",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "stationId",
+              "table": {
+                "schema": "inventory",
+                "name": "bulkWorkOrder"
+              }
+            }
+          }
+        },
+        {
+          "name": "plannedModeSachets",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "stationId",
+              "table": {
+                "schema": "ingredient",
+                "name": "plannedMode"
+              }
+            }
+          }
+        },
+        {
+          "name": "realTimeModeSachets",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "stationId",
+              "table": {
+                "schema": "ingredient",
+                "name": "realTimeMode"
+              }
+            }
+          }
+        },
+        {
+          "name": "recipesToAssemble",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "assemblyStationId",
+              "table": {
+                "schema": "simpleRecipe",
+                "name": "simpleRecipe"
+              }
+            }
+          }
+        },
+        {
+          "name": "sachetWorkOrders",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "stationId",
+              "table": {
+                "schema": "inventory",
+                "name": "sachetWorkOrder"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "settings",
+        "name": "user"
+      },
+      "array_relationships": [
+        {
+          "name": "bulkWorkOrders",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "userId",
+              "table": {
+                "schema": "inventory",
+                "name": "bulkWorkOrder"
+              }
+            }
+          }
+        },
+        {
+          "name": "sachetWorkOrders",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "userId",
+              "table": {
+                "schema": "inventory",
+                "name": "sachetWorkOrder"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "simpleRecipe",
+        "name": "recipeYield_ingredientSachet"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createSimpleRecipeSachet",
+          "select_aggregate": "simpleRecipeSachetsAggregate",
+          "select_by_pk": "simpleRecipeSachet",
+          "select": "simpleRecipeSachets",
+          "delete": "deleteSimpleRecipeSachet",
+          "update": "updateSimpleRecipeSachet"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "ingredientSachet",
+          "using": {
+            "foreign_key_constraint_on": "ingredientSachetId"
+          }
+        },
+        {
+          "name": "simpleRecipeYield",
+          "using": {
+            "foreign_key_constraint_on": "recipeYieldId"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "simpleRecipe",
+        "name": "simpleRecipe"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createSimpleRecipe",
+          "select_aggregate": "simpleRecipesAggregate",
+          "select_by_pk": "simpleRecipe",
+          "select": "simpleRecipes",
+          "delete": "deleteSimpleRecipe",
+          "update": "updateSimpleRecipe"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "assemblyStation",
+          "using": {
+            "foreign_key_constraint_on": "assemblyStationId"
+          }
+        },
+        {
+          "name": "cuisineNameId",
+          "using": {
+            "foreign_key_constraint_on": "cuisine"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "simpleRecipeYields",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "recipeId",
+              "table": {
+                "schema": "simpleRecipe",
+                "name": "simpleRecipeYield"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "simpleRecipe",
+        "name": "simpleRecipeYield"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createSimpleRecipeYield",
+          "select_aggregate": "simpleRecipeYieldsAggregate",
+          "select_by_pk": "simpleRecipeYield",
+          "select": "simpleRecipeYields",
+          "delete": "deleteSimpleRecipeYield",
+          "update": "updateSimpleRecipeYield"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "simpleRecipe",
+          "using": {
+            "foreign_key_constraint_on": "recipeId"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "ingredientSachets",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "recipeYieldId",
+              "table": {
+                "schema": "simpleRecipe",
+                "name": "recipeYield_ingredientSachet"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "unit",
+        "name": "unit"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createUnit",
+          "select_aggregate": "unitsAggregate",
+          "select_by_pk": "unit",
+          "select": "units",
+          "delete": "deleteUnit",
+          "update": "updateUnit"
+        },
+        "custom_column_names": {}
+      },
+      "array_relationships": [
+        {
+          "name": "bulkItemHistories",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "unit",
+              "table": {
+                "schema": "inventory",
+                "name": "bulkItemHistory"
+              }
+            }
+          }
+        },
+        {
+          "name": "bulkItems",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "unit",
+              "table": {
+                "schema": "inventory",
+                "name": "bulkItem"
+              }
+            }
+          }
+        },
+        {
+          "name": "bulkWorkOrders",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "inputQuantityUnit",
+              "table": {
+                "schema": "inventory",
+                "name": "bulkWorkOrder"
+              }
+            }
+          }
+        },
+        {
+          "name": "inputUnitConversions",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "inputUnitName",
+              "table": {
+                "schema": "unit",
+                "name": "unitConversion"
+              }
+            }
+          }
+        },
+        {
+          "name": "outputUnitConversions",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "outputUnitName",
+              "table": {
+                "schema": "unit",
+                "name": "unitConversion"
+              }
+            }
+          }
+        },
+        {
+          "name": "purchaseOrderItems",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "unit",
+              "table": {
+                "schema": "inventory",
+                "name": "purchaseOrderItem"
+              }
+            }
+          }
+        },
+        {
+          "name": "sachetItems",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "unit",
+              "table": {
+                "schema": "inventory",
+                "name": "sachetItem"
+              }
+            }
+          }
+        },
+        {
+          "name": "supplierItems",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "unit",
+              "table": {
+                "schema": "inventory",
+                "name": "supplierItem"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "unit",
+        "name": "unitConversion"
+      },
+      "configuration": {
+        "custom_root_fields": {
+          "insert": "createUnitConversion",
+          "select_aggregate": "unitConversionsAggregate",
+          "select_by_pk": "unitConversion",
+          "select": "unitConversions",
+          "delete": "deleteUnitConversion",
+          "update": "updateUnitConversion"
+        },
+        "custom_column_names": {}
+      },
+      "object_relationships": [
+        {
+          "name": "inputUnit",
+          "using": {
+            "foreign_key_constraint_on": "outputUnitName"
+          }
+        },
+        {
+          "name": "outputUnit",
+          "using": {
+            "foreign_key_constraint_on": "inputUnitName"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "unitConversionByBulkItems",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "unitConversionId",
+              "table": {
+                "schema": "inventory",
+                "name": "unitConversionByBulkItem"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
