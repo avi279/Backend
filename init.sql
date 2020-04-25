@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS master."processingName"
     "processingName" text COLLATE pg_catalog."default" NOT NULL,
     "description" text COLLATE pg_catalog."default",
     CONSTRAINT "processing_pkey" PRIMARY KEY (id),
-    CONSTRAINT "processing_name_key" UNIQUE (processingName)
+    CONSTRAINT "processing_name_key" UNIQUE ("processingName")
 )
 TABLESPACE pg_default;
 
