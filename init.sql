@@ -509,7 +509,7 @@ ADD  CONSTRAINT "supplierItem_supplierId_fkey" FOREIGN KEY ("supplierId")
         REFERENCES inventory.supplier (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE RESTRICT,
-    CONSTRAINT "supplierItem_unit_fkey" FOREIGN KEY (unit)
+ADD  CONSTRAINT "supplierItem_unit_fkey" FOREIGN KEY (unit)
         REFERENCES unit.unit (name) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
@@ -527,7 +527,7 @@ ADD  CONSTRAINT "bulkItem_unit_fkey" FOREIGN KEY (unit)
         REFERENCES unit.unit (name) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+        
 ALTER TABLE inventory."bulkItem"
 ADD CONSTRAINT "bulkItem_processingName_fkey" FOREIGN KEY ("processingName")
         REFERENCES master."processingName" (name) MATCH SIMPLE
