@@ -513,7 +513,7 @@ ADD  CONSTRAINT "supplierItem_unit_fkey" FOREIGN KEY (unit)
         REFERENCES unit.unit (name) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE inventory."supplierItem"
 ADD  CONSTRAINT "bulkItem_processingName_fkey" FOREIGN KEY ("processingName")
         REFERENCES master."processingName" (name) MATCH SIMPLE
@@ -541,7 +541,7 @@ ADD CONSTRAINT "bulkItem_unit_fkey" FOREIGN KEY (unit)
         REFERENCES unit.unit (name) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE inventory."bulkItemHistory"
 ADD CONSTRAINT "bulkItemHistory_bulkItemId_fkey" FOREIGN KEY ("bulkItemId")
         REFERENCES inventory."bulkItem" (id) MATCH SIMPLE
@@ -559,7 +559,7 @@ ADD CONSTRAINT "bulkItemHistory_workOrderId_fkey" FOREIGN KEY ("workOrderId")
         REFERENCES inventory."bulkWorkOrder" (id) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE inventory."bulkWorkOrder"
 ADD CONSTRAINT "bulkWorkOrder_inputBulkItemId_fkey" FOREIGN KEY ("inputBulkItemId")
         REFERENCES inventory."bulkItem" (id) MATCH SIMPLE
@@ -581,7 +581,7 @@ ADD CONSTRAINT "bulkWorkOrder_userId_fkey" FOREIGN KEY ("userId")
         REFERENCES settings."user" (id) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE inventory."sachetItem"
 ADD CONSTRAINT "sacheItem_bulkItemId_fkey" FOREIGN KEY ("bulkItemId")
         REFERENCES inventory."bulkItem" (id) MATCH SIMPLE
@@ -591,7 +591,7 @@ ADD CONSTRAINT "sachetItem_unit_fkey" FOREIGN KEY (unit)
         REFERENCES unit.unit (name) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE inventory."sachetItemHistory"
 ADD CONSTRAINT "sachetItemHistory_sachetItemId_fkey" FOREIGN KEY ("sachetItemId")
         REFERENCES inventory."sachetItem" (id) MATCH SIMPLE
@@ -601,7 +601,7 @@ ADD CONSTRAINT "sachetItemHistory_sachetWorkItemId_fkey" FOREIGN KEY ("sachetWor
         REFERENCES inventory."sachetWorkOrder" (id) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE inventory."sachetWorkOrder"
 ADD CONSTRAINT "sachetWorkOrder_inputBulkItemId_fkey" FOREIGN KEY ("inputBulkItemId")
         REFERENCES inventory."bulkItem" (id) MATCH SIMPLE
@@ -623,7 +623,7 @@ ADD CONSTRAINT "sachetWorkOrder_userId_fkey" FOREIGN KEY ("userId")
         REFERENCES settings."user" (id) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE inventory."purchaseOrderItem"
 ADD CONSTRAINT "purchaseOrderItem_bulkItemId_fkey" FOREIGN KEY ("bulkItemId")
         REFERENCES inventory."bulkItem" (id) MATCH SIMPLE
@@ -641,7 +641,7 @@ ADD CONSTRAINT "purchaseOrderItem_unit_fkey" FOREIGN KEY (unit)
         REFERENCES unit.unit (name) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE inventory."unitConversionByBulkItem"
 ADD CONSTRAINT "unitConversionByBulkItem_bulkItemId_fkey" FOREIGN KEY ("bulkItemId")
         REFERENCES inventory."bulkItem" (id) MATCH SIMPLE
@@ -660,7 +660,7 @@ ADD CONSTRAINT "ingredientProcessing_name_fkey" FOREIGN KEY ("processingName")
         REFERENCES master."processingName" (name) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE ingredient."ingredient.Sachet"
 ADD CONSTRAINT "ingredientSachet_ingredientId_fkey" FOREIGN KEY ("ingredientId")
         REFERENCES ingredient.ingredient (id) MATCH SIMPLE
@@ -674,7 +674,7 @@ ADD CONSTRAINT "ingredientSachet_unit_fkey" FOREIGN KEY (unit)
         REFERENCES unit.unit (name) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE ingredient."plannedMode"
 ADD CONSTRAINT "plannedMode_ingredientSachetId_fkey" FOREIGN KEY ("ingredientSachetId")
         REFERENCES ingredient."ingredientSachet" (id) MATCH SIMPLE
@@ -688,7 +688,7 @@ ADD CONSTRAINT "plannedMode_stationId_fkey" FOREIGN KEY ("stationId")
         REFERENCES settings.station (id) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE ingredient."realTimeMode"
 ADD CONSTRAINT "realTimeMode_bulkItemId_fkey" FOREIGN KEY ("bulkItemId")
         REFERENCES inventory."bulkItem" (id) MATCH SIMPLE
@@ -706,7 +706,7 @@ ADD CONSTRAINT "realTimeMode_stationId_fkey" FOREIGN KEY ("stationId")
         REFERENCES settings.station (id) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE "onlineStore"."comboProductComponent"
 ADD CONSTRAINT "comboProductComponents_comboProductId_fkey" FOREIGN KEY ("comboProductId")
         REFERENCES "onlineStore"."comboProduct" (id) MATCH SIMPLE
@@ -724,7 +724,7 @@ ADD CONSTRAINT "comboProductComponents_simpleRecipeProductId_fkey" FOREIGN KEY (
         REFERENCES "onlineStore"."simpleRecipeProduct" (id) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE "onlineStore"."customizableProductOption"
 ADD CONSTRAINT "customizableProductOptions_customizableProductId_fkey" FOREIGN KEY ("customizableProductId")
         REFERENCES "onlineStore"."customizableProduct" (id) MATCH SIMPLE
@@ -738,7 +738,7 @@ ADD CONSTRAINT "customizableProductOptions_simpleRecipeProductId_fkey" FOREIGN K
         REFERENCES "onlineStore"."simpleRecipeProduct" (id) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE "onlineStore"."inventoryProductOption"
 ADD CONSTRAINT "inventoryProductOption_inventoryProductId_fkey" FOREIGN KEY ("inventoryProductId")
         REFERENCES "onlineStore"."inventoryProduct" (id) MATCH SIMPLE
@@ -749,7 +749,7 @@ ADD CONSTRAINT "simpleRecipeProduct_simpleRecipeId_fkey" FOREIGN KEY ("simpleRec
         REFERENCES "simpleRecipe"."simpleRecipe" (id) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE "onlineStore"."simpleRecipeProductOption"
 ADD CONSTRAINT "simpleRecipeProductVariant_recipeYieldId_fkey" FOREIGN KEY ("recipeYieldId")
         REFERENCES "simpleRecipe"."simpleRecipeYield" (id) MATCH SIMPLE
@@ -759,7 +759,7 @@ ADD CONSTRAINT "simpleRecipeProductVariant_simpleRecipeProductId_fkey" FOREIGN K
         REFERENCES "onlineStore"."simpleRecipeProduct" (id) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE "simpleRecipe"."recipeYield_ingredientSachet"
 ADD CONSTRAINT "recipeYield_ingredientSachet_ingredientSachetId_fkey" FOREIGN KEY ("ingredientSachetId")
         REFERENCES ingredient."ingredientSachet" (id) MATCH SIMPLE
@@ -769,7 +769,7 @@ ADD CONSTRAINT "recipeYield_ingredientSachet_recipeYieldId_fkey" FOREIGN KEY ("r
         REFERENCES "simpleRecipe"."simpleRecipeYield" (id) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE "simpleRecipe"."simpleRecipe"
 ADD CONSTRAINT "recipe_assemblyStationId_fkey" FOREIGN KEY ("assemblyStationId")
         REFERENCES settings.station (id) MATCH SIMPLE
@@ -779,13 +779,13 @@ ADD CONSTRAINT "simpleRecipe_cuisine_fkey" FOREIGN KEY (cuisine)
         REFERENCES master."cuisineName" (name) MATCH SIMPLE
         ON UPDATE RESTRICT
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE "simpleRecipe"."simpleRecipeYield"
 ADD CONSTRAINT "recipeServing_recipeId_fkey" FOREIGN KEY ("recipeId")
         REFERENCES "simpleRecipe"."simpleRecipe" (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE RESTRICT;
-​
+
 ALTER TABLE unit."unitConversion"
 ADD CONSTRAINT "unitConversion_inputUnit_fkey" FOREIGN KEY ("inputUnitName")
         REFERENCES unit.unit (name) MATCH SIMPLE
